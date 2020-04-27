@@ -196,5 +196,8 @@ public class SSOController {
         }
         return "fail";
     }
+    /**
+     * 添加判断用户登录业务1
+     */
 
 }
