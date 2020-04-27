@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.dao.GoodTypeMapper">
+    <!--展示类型列表以及父类型-->
+    <select id="queryTypeAll" resultType="com.cn.entity.GoodsType">
+        SELECT g.*,g2.gtypename as pname FROM gtype g LEFT JOIN gtype g2 on g.pid=g2.id;
+    </select>
+
+    <!--根据商品ID获取该商品类型-->
+    <select id="queryTypeByGid" resultType="com.cn.entity.GoodsType">
+        select gt.*,if((select g.tid from goods g where g.tid=gt.id and g.id=#{gid}),'true','false') as checked from gtype gt;
+    </select>
+
+    <!--根据类型ID获取该类型状态-->
+    <select id="queryAllById" resultType="com.cn.entity.GoodsType">
+        select * from gtype g
+    </select>
+
+</mapper>

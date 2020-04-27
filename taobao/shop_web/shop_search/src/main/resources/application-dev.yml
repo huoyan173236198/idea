@@ -1,0 +1,10 @@
+dubbo:
+  application:
+    name: search_web
+  registry:
+    address: zookeeper://192.168.17.128:2181
+  consumer:
+    check: false
+    timeout: 10000
+    retries: 0
+

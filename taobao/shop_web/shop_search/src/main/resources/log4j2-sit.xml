@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="warn" moitorInterval="5">
+    <properties>
+        <property name="LOG_HOME">/usr/local/log/web_back</property>
+        <!--<property name="LOG_HOME">I:/logs/back</property>-->
+        <property name="consolePattern">[%d{HH:mm:ss.SSS}] [%t] [%-5level] %c{36}:%t %F -- %m%n</property>
+        <property name="rollingFilePattern">[%d{yyyy-MM-dd HH-mm-ss.SSS}] [%-5level] %c{36}:%t %F ---- %m%n</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${consolePattern}"/>
+        </Console>
+
+        <RollingFile name="rollingFile" fileName="${LOG_HOME}/${date:yyyy-MM-dd}/back.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/back_%d{HH-mm-ss}_%i.log">
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMisMatch="DENY"/>
+            <PatternLayout pattern="${rollingFilePattern}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <AsyncLogger name="com.cn" level="trace" includeLocation="true">
+            <AppenderRef ref="rollingFile"/>
+        </AsyncLogger>
+        <Root level="warn">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>

@@ -1,0 +1,16 @@
+dubbo:
+  application:
+    name: sso_web
+  registry:
+    address: zookeeper://192.168.17.128:2181
+  consumer:
+    check: false
+    timeout: 10000
+    retries: 0
+spring:
+  rabbitmq:
+    host: 192.168.17.128
+    virtual-host: /
+  redis:
+    host: 192.168.17.128
+    password: root

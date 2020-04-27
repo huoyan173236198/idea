@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <parent>
+        <artifactId>myshop</artifactId>
+        <groupId>com.cn</groupId>
+        <version>0.0.1-SNAPSHOT</version>
+    </parent>
+    <modelVersion>4.0.0</modelVersion>
+
+    <artifactId>shop_entity</artifactId>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+        </dependency>
+
+        <dependency>
+            <groupId>com.baomidou</groupId>
+            <artifactId>mybatis-plus-annotation</artifactId>
+            <version>3.2.0</version>
+        </dependency>
+
+        <dependency>
+
+            <groupId>io.swagger</groupId>
+
+            <artifactId>swagger-annotations</artifactId>
+
+            <version>1.5.21</version>
+
+        </dependency>
+
+        <dependency>
+
+            <groupId>io.swagger</groupId>
+
+            <artifactId>swagger-models</artifactId>
+
+            <version>1.5.21</version>
+
+        </dependency>
+
+
+        <!--不能直接添加security依赖，不然所有需要实体类的地方都会被权限控制起来-->
+        <dependency>
+            <groupId>org.springframework.security</groupId>
+            <artifactId>spring-security-core</artifactId>
+            <version>5.1.5.RELEASE</version>
+        </dependency>
+    </dependencies>
+
+</project>

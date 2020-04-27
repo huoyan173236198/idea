@@ -1,0 +1,33 @@
+dubbo:
+  application:
+    name: back_web
+  registry:
+    address: zookeeper://192.168.17.128:2181
+  consumer:
+    check: false
+    timeout: 10000
+    retries: 0
+logging:
+  config: classpath:log4j2-dev.xml
+spring:
+  servlet:
+    #maxFileSize 是单个文件大小，maxRequestSize是设置总上传的数据大小，小的上传用这种方式，例如几十兆，太大的用其他方式
+    #小视频或者音频用这种，太大的文件可以用ftp文件服务器操作大的视频，例如几十G
+    multipart:
+      #上传文件最大的大小
+      max-file-size: 10MB
+      #请求携带最大的大小
+      max-request-size: 10MB
+fdfs:
+  #读取超时时间
+  so-timeout: 10000
+  #连接超时时间
+  connect-timeout: 10000
+  tracker-list:
+    - 192.168.17.128:22122
+  thumb-image:
+    width: 100
+    height: 100
+  pool:
+    #防止comm-pool依赖冲突，不启用fdfs的conn-pool，用springboot自带comm-pool
+    jmx-enabled: false

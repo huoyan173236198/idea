@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.cn.dao.PowerMapper">
+    <select id="queryPowerByRid" resultType="com.cn.entity.Power">
+        select pw.*,
+        if((select pwid from role_power_table where pwid=pw.id and rid=#{rid}),'true','false') as checked
+        from power pw;
+    </select>
+
+    <select id="queryPowerAll" resultType="com.cn.entity.Power">
+        SELECT p.*,p2.powername as pname FROM power p LEFT JOIN power p2 on p.pid=p2.id;
+    </select>
+
+</mapper>

@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="debug" moitorInterval="5">
+    <properties>
+        <property name="LOG_HOME">I:/logs/backService</property>
+        <property name="consolePattern">[%d{HH:mm:ss.SSS}] [%t] [%-5level] %c{36}:%t %F -- %m%n</property>
+        <property name="rollingFilePattern">[%d{yyyy-MM-dd HH-mm-ss.SSS}] [%-5level] %c{36}:%t %F ---- %m%n</property>
+    </properties>
+
+    <Appenders>
+        <Console name="Console" target="SYSTEM_OUT">
+            <PatternLayout pattern="${consolePattern}"/>
+        </Console>
+
+        <RollingFile name="rollingFile" fileName="${LOG_HOME}/back_service.log"
+                     filePattern="${LOG_HOME}/$${date:yyyy-MM-dd}/back_service_%d{yyyy-MM-dd}_%i.log.gz">
+            <ThresholdFilter level="debug" onMatch="ACCEPT" onMisMatch="DENY"/>
+            <PatternLayout pattern="${rollingFilePattern}"/>
+            <Policies>
+                <OnStartupTriggeringPolicy/>
+                <SizeBasedTriggeringPolicy size="10 MB"/>
+                <TimeBasedTriggeringPolicy/>
+            </Policies>
+            <DefaultRolloverStrategy max="30"/>
+        </RollingFile>
+
+    </Appenders>
+
+    <Loggers>
+        <AsyncLogger name="com.cn" level="trace" includeLocation="true" additivity="false">
+            <AppenderRef ref="rollingFile"/>
+        </AsyncLogger>
+        <Root level="info">
+            <AppenderRef ref="Console"/>
+        </Root>
+    </Loggers>
+</Configuration>
